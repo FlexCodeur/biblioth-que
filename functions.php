@@ -4,7 +4,7 @@ session_start(); // obligatoire pour utiliser les sessions
 // var_dump($_SERVER);
 // on définit une constante de cette façon
 // define('NOM_DE_LA_CONSTANTE_EN_MAJUSCULE', 'VALEUR_DE_LA_CONSTANTE');
-define('HOME_URL', 'http://biblioteque/'); // à chaque migration, cet élément sura surement à changer
+define('HOME_URL', 'http://bibliotheque/'); // à chaque migration, cet élément sura surement à changer
 define('PATH_PROJECT', __DIR__);
 
 // function pour rediriger vers la homePage si $enable_access existe et n'est pas nul

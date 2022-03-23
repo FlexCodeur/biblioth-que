@@ -15,14 +15,15 @@ require_once PATH_PROJECT . '/connect.php';
 Tout l'affichage des livres devra être dans un container
 */
 
-$req = $db->query("SELECT COUNT(id) AS count_book
+$req = $db->query("SELECT COUNT(id) 
+    AS count_book
 	FROM livre
 ");
 $result = $req->fetchObject();
 
 $count_books = $result->count_book;
 
-$per_page = 3;
+$per_page = 6;
 $number_pages = ceil($count_books / $per_page);
 
 if (isset($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $number_pages) {
@@ -39,9 +40,8 @@ LEFT JOIN genre g
 ON g.id = l.genre_id
 LEFT JOIN illustration i
 ON l.illustration_id = i.id
-GROUP BY l.id
-ORDER BY l.id ASC;
-LIMIT :offset, :per_page
+ORDER BY l.id ASC                  
+LIMIT :offset, :per_page;
 ");
 
 $offset = ($current_page - 1) * $per_page;
@@ -61,8 +61,8 @@ $books = $req->fetchAll(PDO::FETCH_OBJ);
 
         $id_book = $book->id;
     ?>
-    <div class="container">
-        <div class="content-items">
+    <div class="book">
+        <div class="book-items">
             <img src="<?php echo "../assets/img/{$book->file_name}"; ?>" alt="">
             <h3><?php echo sanitize_html($book->titre); ?></h3>
             <p>Auteur : <?php echo sanitize_html($book->prenom) . ' ' . sanitize_html($book->nom); ?></p>
